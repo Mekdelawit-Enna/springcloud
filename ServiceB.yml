@@ -1,1 +1,10 @@
-greeting : Hello from Service B
+greeting: Hello from Service B, with Git config
+
+server:
+  port: 8091
+
+management:
+  endpoints: 
+    web: 
+      exposure:
+        include: refresh
