@@ -1,0 +1,45 @@
+spring:
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: gid
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: kafka
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    bootstrap-servers: localhost:9092
+  data:
+    mongodb:
+      port: '27017'
+      host: localhost
+      database: productdb
+  application:
+    name: PaymentService
+  zipkin:
+    base-url: http://localhost:9411/
+  logging:
+    file=C:/shoppingCart/spring-boot-elk.log
+sleuth:
+  sampler:
+    probability: 1 #100% (default = 10%)
+app:
+  topic:
+    productTopic: productTopic
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eurekaserver1:8761/eureka/ ,
+                   http://eurekaserver2:8762/eureka/
+logging:
+  level:
+    org:
+      springframework: ERROR
+    root: ERROR
+
