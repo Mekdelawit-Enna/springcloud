@@ -1,0 +1,37 @@
+logging:
+  level:
+    org:
+      springframework: ERROR
+    root: ERROR
+spring:
+  data:
+    mongodb:
+      database: orderquerydb
+      port: '27017'
+      host: localhost
+  application:
+    name: OrderQueryService
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      auto-offset-reset: earliest
+      group-id: gid
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+    bootstrap-servers: localhost:9092
+#app:
+#  topic:
+#    orderaddedtopic: orderaddedtopic
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eurekaserver1:8761/eureka/ ,
+                   http://eurekaserver2:8762/eureka/
